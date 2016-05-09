@@ -48,4 +48,6 @@ def lunch_bot_context
   @@lunch_bot_context ||= LunchBotContext.new
 end
 
+SlackRubyBot::Client.logger.level = Logger::WARN
+
 LunchBot.run
