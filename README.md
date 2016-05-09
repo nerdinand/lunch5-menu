@@ -47,3 +47,13 @@ On a Mac just do this:
 brew install imagemagick
 brew install tesseract --with-all-languages
 ```
+
+## Slack bot
+
+This also includes a bot for Slack. Run it like this:
+
+```SLACK_API_TOKEN=your-slack-bot-token bundle exec ruby lunch-bot.rb```
+
+An interaction with the bot looks something like this:
+
+![bot example interaction](https://raw.githubusercontent.com/nerdinand/lunch5-menu/master/doc/bot-example.png)
