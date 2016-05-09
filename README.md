@@ -47,3 +47,10 @@ On a Mac just do this:
 brew install imagemagick
 brew install tesseract --with-all-languages
 ```
+
+To run with Docker
+
+```
+docker build -t lunch5-menu .
+docker run -e "SLACK_API_TOKEN=your_slack_token_here" -ti lunch5-menu
+```
