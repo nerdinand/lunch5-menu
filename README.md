@@ -57,3 +57,10 @@ This also includes a bot for Slack. Run it like this:
 An interaction with the bot looks something like this:
 
 ![bot example interaction](https://raw.githubusercontent.com/nerdinand/lunch5-menu/master/doc/bot-example.png)
+
+To run with Docker:
+
+```
+docker build -t lunch5-menu .
+docker run -e "SLACK_API_TOKEN=your_slack_token_here" -ti lunch5-menu
+```
