@@ -13,7 +13,7 @@ RUN   apt-get clean -y && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /usr/share/doc/*
 
-ADD ./lunch5-menu /lunch5-menu
+ADD . /lunch5-menu
 WORKDIR /lunch5-menu
 RUN bundle install
 CMD bundle exec ruby lunch-bot.rb
