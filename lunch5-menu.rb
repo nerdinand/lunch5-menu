@@ -46,7 +46,7 @@ end
 weekday = ARGV[0].to_sym
 
 def download_and_convert_menuplan
-  `curl http://www.lunch-5.ch/menu/menuplan.pdf | convert -density 300 - -threshold 80% -monochrome png:- | ./multicrop2 -d 2000000 - /tmp/multicrop2-output.png`
+  `curl http://www.lunch-5.ch/menu/menuplan.pdf | convert -chop 0x400 -density 300 - -threshold 80% -monochrome png:- | ./multicrop2 -d 3000000 - /tmp/multicrop2-output.png`
 end
 
 download_and_convert_menuplan
@@ -55,7 +55,7 @@ download_and_convert_menuplan
   puts menu
   puts
   menu_text = `convert /tmp/multicrop2-output-000.png -crop #{CELL_WIDTH}x#{CELL_HEIGHT}#{MENU_TOP_LEFT_POSITIONS[weekday][menu]} png:- | tesseract - - -l deu -psm 4`
-  puts menu_text.lines.reject { |line| line.strip.empty? }
+  puts menu_text.lines.reject { |line| line.scrub('').strip.empty? }
   puts
 end
 

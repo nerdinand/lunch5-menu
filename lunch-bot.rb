@@ -4,7 +4,7 @@ class LunchBotContext
   attr_reader :lunch5_menu_output
 
   def retrieve_menu
-    @lunch5_menu_output = `./lunch5-menu.rb #{weekday_today}`
+    @lunch5_menu_output = `./lunch5-menu.rb #{weekday_today}`.force_encoding(Encoding::UTF_8)
     @data_weekday = weekday_today
   end
 
