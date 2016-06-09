@@ -1,51 +1,21 @@
 require 'slack-ruby-bot'
 
-class LunchBotContext
-  attr_reader :lunch5_menu_output
-
-  def retrieve_menu
-    @lunch5_menu_output = `./lunch5-menu.rb #{weekday_today}`.force_encoding(Encoding::UTF_8)
-    @data_weekday = weekday_today
-  end
-
-  def data_current?
-    return false unless @data_weekday
-    @data_weekday == weekday_today
-  end
-
-  private
-
-  attr_reader :data_weekday
-
-  def weekday_today
-    DateTime.now.strftime('%a').downcase[0..1]
-  end
-end
+require_relative 'data_source/lunch5'
+require_relative 'data_source/fifty_one'
 
 class LunchBot < SlackRubyBot::Bot
   command 'lunch5' do |client, data, match|
-    operation = proc do
-      lunch_bot_context.retrieve_menu
-    end
-    callback = proc do |result|
-      self.output_menu(client, data)
-    end
-
-    unless lunch_bot_context.data_current?
-      client.say(text: 'Hold on, fetching the latest menu for you...', channel: data.channel)
-      EventMachine.defer(operation, callback)
-    else
-      self.output_menu(client, data)
-    end
+    DataSource::Lunch5::Lunch5.new.command(client, data, match)
   end
 
-  def self.output_menu(client, data)
-    client.say(text: "Here is today's Lunch 5 menu: \n#{lunch_bot_context.lunch5_menu_output}", channel: data.channel)
+  command 'fiftyone' do |client, data, match|
+    DataSource::FiftyOne::FiftyOne.new.command(client, data, match)
   end
-end
 
-def lunch_bot_context
-  @@lunch_bot_context ||= LunchBotContext.new
+  command 'everything' do |client, data, match|
+    DataSource::Lunch5::Lunch5.new.command(client, data, match)
+    DataSource::FiftyOne::FiftyOne.new.command(client, data, match)
+  end
 end
 
 SlackRubyBot::Client.logger.level = Logger::WARN

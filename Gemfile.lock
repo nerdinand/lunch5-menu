@@ -8,6 +8,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    ansi (1.5.0)
+    ast (2.3.0)
     byebug (8.2.5)
     coderay (1.1.1)
     eventmachine (1.2.0.1)
@@ -36,6 +38,9 @@ GEM
     method_source (0.8.2)
     minitest (5.8.4)
     multipart-post (2.0.0)
+    oga (2.2)
+      ast
+      ruby-ll (~> 2.1)
     oj (2.15.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -44,6 +49,9 @@ GEM
     pry-byebug (3.3.0)
       byebug (~> 8.0)
       pry (~> 0.10)
+    ruby-ll (2.1.2)
+      ansi
+      ast
     slack-ruby-bot (0.7.0)
       activesupport
       faye-websocket
@@ -70,6 +78,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  oga
   pry-byebug
   slack-ruby-bot
 
