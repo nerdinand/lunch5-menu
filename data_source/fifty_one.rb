@@ -27,7 +27,7 @@ module DataSource
       end
 
       def retrieve_menu
-        uri = URI('http://swisscom-fiftyone.sv-group.ch/de/menuplan.html')
+        uri = URI('http://swisscom-fiftyone.sv-restaurant.ch/de/menuplan.html')
         html_string = Net::HTTP.get(uri)
 
         oga_document = Oga.parse_html(html_string)

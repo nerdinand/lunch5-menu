@@ -49,6 +49,7 @@ GEM
     pry-byebug (3.3.0)
       byebug (~> 8.0)
       pry (~> 0.10)
+    rake (11.1.2)
     ruby-ll (2.1.2)
       ansi
       ast
@@ -80,6 +81,7 @@ PLATFORMS
 DEPENDENCIES
   oga
   pry-byebug
+  rake
   slack-ruby-bot
 
 BUNDLED WITH
