@@ -37,6 +37,7 @@ namespace :docker do
   task :git_tag do
     version = docker_container_version.split(':').last
     system "git tag #{version}"
+    system 'git push --tags'
   end
 
   desc 'Build, tag and push a docker container'
